@@ -6,11 +6,11 @@ import { getAllMovies } from '../../utils/EndPoints';
 
 function HomeMovies() {
     const [movies, setMovies] = useState([])
-    //const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const getMovies = async () => {
         try {
             // localStorage.clear()
-           // setLoading(true);
+            setLoading(true);
             var storedData = localStorage.getItem('favs');
             console.log(storedData)
             // Parse the existing data into an array
@@ -29,6 +29,7 @@ function HomeMovies() {
             });
 
             setMovies(movies.concat(fetchedMovies))
+            setLoading(false)
         } catch (error) {
             toast.error("Something Went Wrong");
         }
