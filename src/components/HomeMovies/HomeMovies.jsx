@@ -41,8 +41,8 @@ function HomeMovies() {
         getMovies()
     })
     return (
-        <div className='flex flex-col items-start mt-16'>
-            <h1 className='text-2xl font-bold mb-9'>Movies</h1>
+        <div className='flex flex-col max-md:relative max-md:max-w-fit max-md:mx-auto items-start mt-16 max-md:mt-10'>
+            <h1 className='text-2xl font-bold mb-9 max-md:mb-2'>Movies</h1>
             <MovieList movies={movies} />
             {
                 loading &&

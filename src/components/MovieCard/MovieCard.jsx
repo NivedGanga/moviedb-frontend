@@ -44,16 +44,16 @@ function MovieCard({ item, isFavPage }) {
         <FaHeart color={"#ffffffee"} />
     </button>
     return (
-        <div className='h-[550px] w-[270px] flex flex-col items-start text-left '>
-            <div className='relative h-[400px] w-full rounded-xl overflow-clip bg-gray-400 mb-2'>
+        <div className='h-[550px] max-md:h-[300px] w-[270px] max-md:w-[150px] flex flex-col items-start text-left '>
+            <div className='relative h-[400px] max-md:h-[200px] w-full rounded-xl overflow-clip bg-gray-400 mb-2'>
                 {
                     isfavourite ? favButton : notFavButton
                 }
                 <img className='w-full h-full object-cover' src={item.banner_image} alt="" />
             </div>
-            <p className='font-medium text-gray-500'>{item.year}</p>
-            <h1 className='text-xl font-semibold'>{item.title}</h1>
-            <p className='font-medium text-gray-500'>{item.genre}</p>
+            <p className='font-medium max-md:text-sm text-gray-500'>{item.year}</p>
+            <h1 className='text-xl max-md:text-lg font-semibold'>{item.title}</h1>
+            <p className='font-medium max-md:text-sm text-gray-500'>{item.genre}</p>
         </div>
     )
 }
