@@ -3,7 +3,7 @@ import MovieList from '../MovieList/MovieList'
 import axiosInstance from '../../api/Axios';
 import { toast } from 'react-toastify';
 import { getAllMovies } from '../../utils/EndPoints';
-
+import { DotLoader } from 'react-spinners';
 function HomeMovies() {
     const [movies, setMovies] = useState([])
     const [loading, setLoading] = useState(true);
@@ -44,6 +44,12 @@ function HomeMovies() {
         <div className='flex flex-col items-start mt-16'>
             <h1 className='text-2xl font-bold mb-9'>Movies</h1>
             <MovieList movies={movies} />
+            {
+                loading &&
+                <div className='w-full flex justify-center mt-14'>
+                    <DotLoader color='#FF0158' />
+                </div>
+            }
         </div>
     )
 }

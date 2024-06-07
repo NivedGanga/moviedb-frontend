@@ -72,7 +72,7 @@ const Header = () => {
             <div className={` flex items-center bg-white fixed w-full justify-between px-24 py-5 z-[100]  transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
                 <div className='flex items-center w-full'>
                     <button className='flex items-center' onClick={() => navigate("/")}>
-                        <div className='p-3 bg-[#FF0158] w-fit rounded-full flex items-center justify-center'>
+                        <div className='p-3 bg-theme w-fit rounded-full flex items-center justify-center'>
                             <CgClapperBoard className='text-white' size={25} />
                         </div>
                         <h1 className='text-2xl pl-3 font-bold'>
@@ -99,7 +99,7 @@ const Header = () => {
                     <button onClick={() => {
                         setSearch("")
                         navigate("/favourites")
-                    }} className='flex items-center px-4 py-2 bg-[#FF0158] rounded-lg text-white'>
+                    }} className='flex items-center px-4 py-2 bg-theme rounded-lg text-white'>
                         <FaHeart size={20} />
                         <h2 className='text-nowrap pl-2'>My Favourites</h2>
                     </button>

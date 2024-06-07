@@ -9,7 +9,14 @@ module.exports = {
     extend: {
       maxWidth: {
         common: '1320px',
+
       },
+      backgroundColor: {
+        theme: "#FF0158"
+      },
+      textColor: {
+        theme: "#FF0158"
+      }
     },
   },
   plugins: [],
