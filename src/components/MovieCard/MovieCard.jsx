@@ -1,33 +1,34 @@
-import React, {  useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaHeart } from 'react-icons/fa';
-function MovieCard({ item }) {
+import { ValueContext } from '../../pages/Favourites';
+function MovieCard({ item, isFavPage }) {
     const [isfavourite, setFavourite] = useState(item.isfav)
+    const setFavChanged = useContext(ValueContext);
+
     const favHandle = () => {
         if (!isfavourite) {
             setFavourite(true)
             let favs = localStorage.getItem("favs");
             let favsArray = favs ? JSON.parse(favs) : [];
             item.isfav = true
-            favsArray.push(item); // Push the new item into the array
+            favsArray.push(item);
             localStorage.setItem("favs", JSON.stringify(favsArray));
 
         } else {
             setFavourite(false)
             let favs = localStorage.getItem("favs");
 
-            // Parse the JSON string to an array or initialize an empty array if favs is null
             let favsArray = favs ? JSON.parse(favs) : [];
-
-            // Identify the index of the object you want to remove from the array
             let indexToRemove = favsArray.findIndex(obj => obj.id === item.id);
-            console.log(indexToRemove)
-            // Check if the index is valid
             if (indexToRemove !== -1) {
-                // Remove the object from the array
+
                 favsArray.splice(indexToRemove, 1);
 
-                // Store the updated array back into local storage
                 localStorage.setItem("favs", JSON.stringify(favsArray));
+                if (isFavPage) {
+                    setFavChanged.setFavChanged(item.id)
+                }
+
             } else {
                 console.log("Object not found in the array.");
             }

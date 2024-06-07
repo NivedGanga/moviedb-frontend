@@ -1,21 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import MovieList from '../components/MovieList/MovieList'
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { DotLoader } from 'react-spinners';
 
 function Favourites() {
     const [movies, setMovies] = useState([])
     const [search, setSearch] = useState("")
+    const [loading, setLoading] = useState(false)
+    const { favChanged } = useContext(ValueContext);
     const getFavourites = () => {
+        setLoading(true)
         let favs = localStorage.getItem("favs")
         let favsArray = favs ? JSON.parse(favs) : [];
         setMovies(favsArray)
+        setLoading(false)
     }
     const handleSearchChange = (event) => {
         setSearch(event.target.value);
     }
     useEffect(() => {
-        getFavourites()
+
     }, [])
+    useEffect(() => {
+        console.log("changed")
+        getFavourites()
+    }, [favChanged])
     useEffect(() => {
         // Function to search for movies by a keyword in their title
         if (search.length === 0) {
@@ -60,17 +69,44 @@ function Favourites() {
                 </div>
             </div>
             {
+
+                loading &&
+                <div className='w-full flex justify-center mt-14'>
+                    <DotLoader color='#FF0158' />
+                </div>
+
+            }
+            {
                 movies.length !== 0 ?
-                    <MovieList movies={movies} />
+                    <MovieList movies={movies} isFavPage={true} />
                     :
-                    <div className='h-full'>
+                    !loading && <div className='h-full'>
                         <h1 className='text-2xl'>  Oops! No Movies</h1>
                     </div>
 
             }
 
         </div >
+
     )
 }
 
-export default Favourites
+
+export const ValueContext = createContext();
+
+const ValueProvider = ({ children }) => {
+    const [favChanged, setFavChanged] = useState(0);
+    return (
+        <ValueContext.Provider value={{ favChanged, setFavChanged }}>
+            {children}
+        </ValueContext.Provider>
+    );
+};
+function FavouritesPage() {
+    return (
+        <ValueProvider>
+            <Favourites />
+        </ValueProvider>
+    )
+}
+export default FavouritesPage

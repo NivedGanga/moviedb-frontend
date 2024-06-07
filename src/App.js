@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Layout from './components/Layout';
-import Favourites from './pages/Favourites';
+import FavouritesPage from './pages/Favourites';
 function App() {
   return (
     <div className="App">
@@ -12,7 +12,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/favourites' element={<Favourites />} />
+            <Route path='/favourites' element={<FavouritesPage />} />
           </Routes>
         </Layout>
       </Router>
